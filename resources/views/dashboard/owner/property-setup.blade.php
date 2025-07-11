@@ -27,61 +27,198 @@
     @endif
 
 </head>
-<body class="bg-[#f9f8f5]">
-    <div class="w-full h-screen flex">
-        <div class="w-[250px] h-full border-r border-r-[#e0e0e0] p-6 flex flex-col">
-            <div class="flex items-center gap-2 mb-8">
-                <a href="/" class="text-[#5f67b4] text-xl font-bold leading-none">Novistar</a>
-                <p class="text-[#020817] bg-[#ADA07B] text-xs font-semibold px-2 py-1 rounded-full">Admin</p>
-            </div>
-            <p class="pl-1.5 text-xs text-[#3f3f46b2] font-medium mb-2">Navigation</p>
-            <div class="flex flex-col gap-1">
-                @include('dashboard.admin.layouts.menu')
+<body class="bg-[#f9f8f5] w-screen h-screen flex items-center justify-center relative">
+    <a href="{{ route('dashboard.owner.properties') }}" class="fixed z-[999] right-4 top-4">
+        <i class="fa-solid fa-xmark fa-md" style="color: #858482;"></i>
+    </a>
+    <div class="bg-white max-w-[675px] w-full border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem]">
+        <div class="flex items-center justify-between">
+            <h1 class="font-semibold tracking-tight text-2xl text-[#5f67b4] source-serif">Property Setup</h1>
+            <p id="step-counter" class="text-sm text-muted-foreground text-[#64748b]">Step 1 of 4</p>
+        </div>
+        <div class="w-full rounded-full h-[16px] bg-[#ada07b] overflow-hidden mt-4 mb-8">
+            <div id="progress-bar" class="h-full w-[25%] bg-[#5f67b4] transition duration-300"></div>
+        </div>
+        <div id="title-step1" class="w-full flex flex-col gap-4 items-center justify-center mb-8">
+            <i class="fa-solid fa-house" style="color: #5f67b4; font-size: 2.5em;"></i>
+            <div class="flex flex-col items-center">
+                <h2 class="font-semibold tracking-tight text-2xl text-[#5f67b4] source-serif">Basic Information</h2>
+                <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Let's start with your contact details</p>
             </div>
         </div>
-        <div class="w-[calc(100%-250px)] h-full">
-            <div class="w-full p-3 border-b border-b-[#e0e0e0]">
-                <div class="w-8 h-8 rounded-full hover:bg-[#EBE8E0] opacity-80 hover:opacity-100 transition duration-300 cursor-pointer flex items-center justify-center">
-                    <svg class="max-w-[60%]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#020817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left" data-lov-id="src/components/ui/sidebar.tsx:279:6" data-lov-name="PanelLeft" data-component-path="src/components/ui/sidebar.tsx" data-component-line="279" data-component-file="sidebar.tsx" data-component-name="PanelLeft" data-component-content="%7B%7D"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg>
-                </div>
-            </div>
-            <div class="w-full max-w-[1400px] mx-auto h-[calc(100%-57px)] py-6 flex flex-col gap-8">
-                <div>
-                    <h1 class="font-semibold tracking-tight text-3xl text-[#5f67b4] source-serif">Your Dashboard</h1>
-                    <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Discover your next perfect getaway</p>
-                </div>
-                <div class="w-full flex gap-8">
-                    <div class="w-1/4 bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem] relative">
-                        <h3 class="text-sm source-serif font-light mb-2">Total Users</h3>
-                        <h4 class="text-xl font-bold text-[#5f67b4]">1,234</h4>
-                        <p class="text-xs text-muted-foreground text-[#64748b] mt-1">+12% from last month</p>
-                        <svg class="absolute z-1 right-6 top-6 max-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#baa372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-4 w-4 ibiza-text-secondary" data-lov-id="src/components/dashboard/AdminDashboard.tsx:76:16" data-lov-name="IconComponent" data-component-path="src/components/dashboard/AdminDashboard.tsx" data-component-line="76" data-component-file="AdminDashboard.tsx" data-component-name="IconComponent" data-component-content="%7B%22className%22%3A%22h-4%20w-4%20ibiza-text-secondary%22%7D"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <div class="w-1/4 bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem] relative">
-                        <h3 class="text-sm source-serif font-light mb-2">Properties</h3>
-                        <h4 class="text-xl font-bold text-[#5f67b4]">89</h4>
-                        <p class="text-xs text-muted-foreground text-[#64748b] mt-1">+3 new this week</p>
-                        <svg class="absolute z-1 right-6 top-6 max-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#baa372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-4 w-4 ibiza-text-secondary" data-lov-id="src/components/dashboard/AdminDashboard.tsx:76:16" data-lov-name="IconComponent" data-component-path="src/components/dashboard/AdminDashboard.tsx" data-component-line="76" data-component-file="AdminDashboard.tsx" data-component-name="IconComponent" data-component-content="%7B%22className%22%3A%22h-4%20w-4%20ibiza-text-secondary%22%7D"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <div class="w-1/4 bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem] relative">
-                        <h3 class="text-sm source-serif font-light mb-2">Bookings</h3>
-                        <h4 class="text-xl font-bold text-[#5f67b4]">456</h4>
-                        <p class="text-xs text-muted-foreground text-[#64748b] mt-1">+23% from last month</p>
-                        <svg class="absolute z-1 right-6 top-6 max-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#baa372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-4 w-4 ibiza-text-secondary" data-lov-id="src/components/dashboard/AdminDashboard.tsx:76:16" data-lov-name="IconComponent" data-component-path="src/components/dashboard/AdminDashboard.tsx" data-component-line="76" data-component-file="AdminDashboard.tsx" data-component-name="IconComponent" data-component-content="%7B%22className%22%3A%22h-4%20w-4%20ibiza-text-secondary%22%7D"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <div class="w-1/4 bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem] relative">
-                        <h3 class="text-sm source-serif font-light mb-2">Revenue</h3>
-                        <h4 class="text-xl font-bold text-[#5f67b4]">€124,500</h4>
-                        <p class="text-xs text-muted-foreground text-[#64748b] mt-1">+18% from last month</p>
-                        <svg class="absolute z-1 right-6 top-6 max-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#baa372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-4 w-4 ibiza-text-secondary" data-lov-id="src/components/dashboard/AdminDashboard.tsx:76:16" data-lov-name="IconComponent" data-component-path="src/components/dashboard/AdminDashboard.tsx" data-component-line="76" data-component-file="AdminDashboard.tsx" data-component-name="IconComponent" data-component-content="%7B%22className%22%3A%22h-4%20w-4%20ibiza-text-secondary%22%7D"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                </div>
-                <div class="w-full bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem]">
-                    <h2 class="font-semibold tracking-tight text-2xl text-[#020817] source-serif">Recent Bookings</h2>
-                    <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Latest bookings across all properties</p>
-                </div>
+        <div id="title-step2" class="w-full flex hidden flex-col gap-4 items-center justify-center mb-8">
+            <i class="fa-solid fa-gear" style="color: #5f67b4; font-size: 2.5em;"></i>
+            <div class="flex flex-col items-center">
+                <h2 class="font-semibold tracking-tight text-2xl text-[#5f67b4] source-serif">Property Details</h2>
+                <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Tell us about your property</p>
             </div>
         </div>
+        <div id="title-step3" class="w-full flex hidden flex-col gap-4 items-center justify-center mb-8">
+            <i class="fa-solid fa-water-ladder" style="color: #5f67b4; font-size: 2.5em;"></i>
+            <div class="flex flex-col items-center">
+                <h2 class="font-semibold tracking-tight text-2xl text-[#5f67b4] source-serif">Amenities & Features</h2>
+                <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Select what your property offers</p>
+            </div>
+        </div>
+        <div id="title-step4" class="w-full flex hidden flex-col gap-4 items-center justify-center mb-8">
+            <i class="fa-solid fa-money-bill-wave" style="color: #5f67b4; font-size: 2.5em;"></i>
+            <div class="flex flex-col items-center">
+                <h2 class="font-semibold tracking-tight text-2xl text-[#5f67b4] source-serif">Pricing Setup</h2>
+                <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Set your rates and fees</p>
+            </div>
+        </div>
+        <form action="{{ route('dashboard.owner.properties.store') }}" method="POST">
+            @csrf
+            <div id="basic-information" class="flex flex-col gap-8">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-semibold leading-none text-[#020817]">Contact Information</p>
+                    <textarea name="contact-information" class="w-full min-h-[75px] max-h-[150px] text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="Enter your contact details, address, phone number..." required></textarea>
+                </div>
+                <div class="w-full flex justify-between items-center">
+                    <a class="cursor-not-allowed select-none opacity-50 w-fit rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Back</a>
+                    <a id="next-btn-step1" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Next</a>
+                </div>
+            </div>
+            <div id="property-details" class="flex hidden flex-col gap-8">
+                <div class="flex flex-col gap-6">
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm font-semibold leading-none text-[#020817]">Property Name</p>
+                        <input type="text" name="property-name" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="ex: Villa Sunrise" required>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm font-semibold leading-none text-[#020817]">Location</p>
+                        <input type="text" name="location" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="ex: Ibiza, Spain" required>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm font-semibold leading-none text-[#020817]">Description</p>
+                        <textarea name="description" class="w-full min-h-[75px] max-h-[150px] text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="Describe your property, its unique features and what makes it special..." required></textarea>
+                    </div>
+                </div>
+                <div class="w-full flex justify-between items-center">
+                    <a id="back-btn-step2" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Back</a>
+                    <a id="next-btn-step2" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Next</a>
+                </div>
+            </div>
+            <div id="amenities-and-features" class="flex hidden flex-col gap-8">
+                <div class="grid grid-cols-3 gap-x-8 gap-y-4">
+                    @php
+                        $amenities = [
+                            'Wifi', 'Parking', 'Garden', 'Pet Friendly', 'Laundry',
+                            'Pool', 'Air Conditioning', 'Fireplace', 'Gym', 'TV',
+                            'Kitchen', 'Beach Access', 'Balcony', 'Hot Tub', 'Workspace'
+                        ];
+                    @endphp
+                    @foreach ($amenities as $amenity)
+                        <label class="flex items-center gap-2 text-sm text-[#020817] font-medium cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="amenities[]"
+                                value="{{ $amenity }}"
+                                class="peer hidden"
+                            >
+                            <div class="w-4 h-4 rounded-full border-2 border-[#5f67b4] flex items-center justify-center peer-checked:bg-[#5f67b4] transition">
+                                <svg class="w-2 h-2 text-white hidden peer-checked:block" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                    <path d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            {{ $amenity }}
+                        </label>
+                    @endforeach
+                </div>
+                <div class="w-full flex justify-between items-center">
+                    <a id="back-btn-step3" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Back</a>
+                    <a id="next-btn-step3" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Next</a>
+                </div>
+            </div>
+            <div id="pricing-setup" class="flex hidden flex-col gap-8">
+                <div class="flex flex-col gap-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex flex-col gap-2">
+                            <p class="text-sm font-semibold leading-none text-[#020817]">Price per Night (€)</p>
+                            <input type="number" min="1" name="price-per-night" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="250" required>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <p class="text-sm font-semibold leading-none text-[#020817]">Cleaning Fee (€)</p>
+                            <input type="number" min="1" name="cleaning-fee" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="50" required>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm font-semibold leading-none text-[#020817]">Security Deposit (€)</p>
+                        <input type="number" min="1" name="security-deposit" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="500" required>
+                    </div>
+                </div>
+                <div class="w-full flex justify-between items-center">
+                    <a id="back-btn-step4" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Back</a>
+                    <button type="submit" id="next-btn-step4" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Complete Setup</button>
+                </div>
+            </div>
+        </form>
     </div>
+
+    <script>
+        nextBtnStep1 = document.getElementById('next-btn-step1');
+        backBtnStep2 = document.getElementById('back-btn-step2');
+        nextBtnStep2 = document.getElementById('next-btn-step2');
+        backBtnStep3 = document.getElementById('back-btn-step3');
+        nextBtnStep3 = document.getElementById('next-btn-step3');
+        backBtnStep4 = document.getElementById('back-btn-step4');
+        nextBtnStep4 = document.getElementById('next-btn-step4');
+
+        titleStep1 = document.getElementById('title-step1');
+        titleStep2 = document.getElementById('title-step2');
+        titleStep3 = document.getElementById('title-step3');
+        titleStep4 = document.getElementById('title-step4');
+
+        stepCounter = document.getElementById('step-counter');
+
+        nextBtnStep1.addEventListener('click', function() {
+            stepCounter.textContent = 'Step 2 of 4';
+            titleStep1.classList.add('hidden');
+            titleStep2.classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '50%';
+            document.getElementById('basic-information').classList.add('hidden');
+            document.getElementById('property-details').classList.remove('hidden');
+        });
+        backBtnStep2.addEventListener('click', function() {
+            stepCounter.textContent = 'Step 1 of 4';
+            titleStep2.classList.add('hidden');
+            titleStep1.classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '25%';
+            document.getElementById('property-details').classList.add('hidden');
+            document.getElementById('basic-information').classList.remove('hidden');
+        });
+        nextBtnStep2.addEventListener('click', function() {
+            stepCounter.textContent = 'Step 3 of 4';
+            titleStep2.classList.add('hidden');
+            titleStep3.classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '75%';
+            document.getElementById('property-details').classList.add('hidden');
+            document.getElementById('amenities-and-features').classList.remove('hidden');
+        });
+        backBtnStep3.addEventListener('click', function() {
+            stepCounter.textContent = 'Step 2 of 4';
+            titleStep3.classList.add('hidden');
+            titleStep2.classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '50%';
+            document.getElementById('amenities-and-features').classList.add('hidden');
+            document.getElementById('property-details').classList.remove('hidden');
+        });
+        nextBtnStep3.addEventListener('click', function() {
+            stepCounter.textContent = 'Step 4 of 4';
+            titleStep3.classList.add('hidden');
+            titleStep4.classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '100%';
+            document.getElementById('amenities-and-features').classList.add('hidden');
+            document.getElementById('pricing-setup').classList.remove('hidden');
+        });
+        backBtnStep4.addEventListener('click', function() {
+            stepCounter.textContent = 'Step 3 of 4';
+            titleStep4.classList.add('hidden');
+            titleStep3.classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '75%';
+            document.getElementById('pricing-setup').classList.add('hidden');
+            document.getElementById('amenities-and-features').classList.remove('hidden');
+        });
+    </script>
 </body>
 </html> 

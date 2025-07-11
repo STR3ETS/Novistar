@@ -36,18 +36,7 @@
             </div>
             <p class="pl-1.5 text-xs text-[#3f3f46b2] font-medium mb-2">Navigation</p>
             <div class="flex flex-col gap-1">
-                <a href="#" class="py-1 px-2 rounded-xl hover:bg-[#EBE8E0] opacity-80 hover:opacity-100 transition duration-300 text-[#020817] flex items-center gap-2 text-sm font-medium">
-                    <i class="fa-solid fa-house fa-sm" style="color: #020817;"></i>
-                    Dashboard
-                </a>
-                <a href="#" class="py-1 px-2 rounded-xl hover:bg-[#EBE8E0] opacity-80 hover:opacity-100 transition duration-300 text-[#020817] flex items-center gap-2.25 text-sm font-medium">
-                    <i class="fa-solid fa-magnifying-glass fa-sm" style="color: #020817;"></i>
-                    Browse Properties
-                </a>
-                <a href="#" class="py-1 px-2 rounded-xl hover:bg-[#EBE8E0] opacity-80 hover:opacity-100 transition duration-300 text-[#020817] flex items-center gap-2.5 text-sm font-medium">
-                    <i class="fa-solid fa-book fa-sm" style="color: #020817;"></i>
-                    My Bookings
-                </a>
+                @include('dashboard.user.layouts.menu')
             </div>
         </div>
         <div class="w-[calc(100%-250px)] h-full">
@@ -64,11 +53,11 @@
                     </div>
                     <a href="#" class="w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Browse Properties</a>
                 </div>
-                <div class="w-full bg-white border border-[#e0e0e0] rounded-4xl p-[1.5rem]">
+                <div class="w-full bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem]">
                     <h2 class="font-semibold tracking-tight text-2xl text-[#020817] source-serif">My Bookings</h2>
                     <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Properties you might love for your next trip</p>
                 </div>
-                <div class="w-full bg-white border border-[#e0e0e0] rounded-4xl p-[1.5rem]">
+                <div class="w-full bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem]">
                     <h2 class="font-semibold tracking-tight text-2xl text-[#020817] source-serif">Recommended for You</h2>
                     <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Your upcoming and past reservations</p>
                 </div>

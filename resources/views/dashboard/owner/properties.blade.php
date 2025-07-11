@@ -32,11 +32,11 @@
         <div class="w-[250px] h-full border-r border-r-[#e0e0e0] p-6 flex flex-col">
             <div class="flex items-center gap-2 mb-8">
                 <a href="/" class="text-[#5f67b4] text-xl font-bold leading-none">Novistar</a>
-                <p class="text-[#020817] bg-[#ADA07B] text-xs font-semibold px-2 py-1 rounded-full">Admin</p>
+                <p class="text-[#020817] bg-[#ADA07B] text-xs font-semibold px-2 py-1 rounded-full">Owner</p>
             </div>
             <p class="pl-1.5 text-xs text-[#3f3f46b2] font-medium mb-2">Navigation</p>
             <div class="flex flex-col gap-1">
-                @include('dashboard.admin.layouts.menu')
+                @include('dashboard.owner.layouts.menu')
             </div>
         </div>
         <div class="w-[calc(100%-250px)] h-full">
@@ -46,39 +46,48 @@
                 </div>
             </div>
             <div class="w-full max-w-[1400px] mx-auto h-[calc(100%-57px)] py-6 flex flex-col gap-8">
-                <div>
-                    <h1 class="font-semibold tracking-tight text-3xl text-[#5f67b4] source-serif">Your Dashboard</h1>
-                    <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Discover your next perfect getaway</p>
+                <div class="w-full flex items-center justify-between">
+                    <div>
+                        <h1 class="font-semibold tracking-tight text-3xl text-[#020817] source-serif">My Properties</h1>
+                        <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Manage all your properties</p>
+                    </div>
+                    <a href="{{ route('dashboard.owner.property.create') }}" class="w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Add Property</a>
                 </div>
-                <div class="w-full flex gap-8">
-                    <div class="w-1/4 bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem] relative">
-                        <h3 class="text-sm source-serif font-light mb-2">Total Users</h3>
-                        <h4 class="text-xl font-bold text-[#5f67b4]">1,234</h4>
-                        <p class="text-xs text-muted-foreground text-[#64748b] mt-1">+12% from last month</p>
-                        <svg class="absolute z-1 right-6 top-6 max-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#baa372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-4 w-4 ibiza-text-secondary" data-lov-id="src/components/dashboard/AdminDashboard.tsx:76:16" data-lov-name="IconComponent" data-component-path="src/components/dashboard/AdminDashboard.tsx" data-component-line="76" data-component-file="AdminDashboard.tsx" data-component-name="IconComponent" data-component-content="%7B%22className%22%3A%22h-4%20w-4%20ibiza-text-secondary%22%7D"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <div class="w-1/4 bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem] relative">
-                        <h3 class="text-sm source-serif font-light mb-2">Properties</h3>
-                        <h4 class="text-xl font-bold text-[#5f67b4]">89</h4>
-                        <p class="text-xs text-muted-foreground text-[#64748b] mt-1">+3 new this week</p>
-                        <svg class="absolute z-1 right-6 top-6 max-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#baa372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-4 w-4 ibiza-text-secondary" data-lov-id="src/components/dashboard/AdminDashboard.tsx:76:16" data-lov-name="IconComponent" data-component-path="src/components/dashboard/AdminDashboard.tsx" data-component-line="76" data-component-file="AdminDashboard.tsx" data-component-name="IconComponent" data-component-content="%7B%22className%22%3A%22h-4%20w-4%20ibiza-text-secondary%22%7D"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <div class="w-1/4 bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem] relative">
-                        <h3 class="text-sm source-serif font-light mb-2">Bookings</h3>
-                        <h4 class="text-xl font-bold text-[#5f67b4]">456</h4>
-                        <p class="text-xs text-muted-foreground text-[#64748b] mt-1">+23% from last month</p>
-                        <svg class="absolute z-1 right-6 top-6 max-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#baa372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-4 w-4 ibiza-text-secondary" data-lov-id="src/components/dashboard/AdminDashboard.tsx:76:16" data-lov-name="IconComponent" data-component-path="src/components/dashboard/AdminDashboard.tsx" data-component-line="76" data-component-file="AdminDashboard.tsx" data-component-name="IconComponent" data-component-content="%7B%22className%22%3A%22h-4%20w-4%20ibiza-text-secondary%22%7D"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                    <div class="w-1/4 bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem] relative">
-                        <h3 class="text-sm source-serif font-light mb-2">Revenue</h3>
-                        <h4 class="text-xl font-bold text-[#5f67b4]">€124,500</h4>
-                        <p class="text-xs text-muted-foreground text-[#64748b] mt-1">+18% from last month</p>
-                        <svg class="absolute z-1 right-6 top-6 max-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#baa372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-4 w-4 ibiza-text-secondary" data-lov-id="src/components/dashboard/AdminDashboard.tsx:76:16" data-lov-name="IconComponent" data-component-path="src/components/dashboard/AdminDashboard.tsx" data-component-line="76" data-component-file="AdminDashboard.tsx" data-component-name="IconComponent" data-component-content="%7B%22className%22%3A%22h-4%20w-4%20ibiza-text-secondary%22%7D"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
-                </div>
-                <div class="w-full bg-white border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem]">
-                    <h2 class="font-semibold tracking-tight text-2xl text-[#020817] source-serif">Recent Bookings</h2>
-                    <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Latest bookings across all properties</p>
+                <div class="grid grid-cols-3 gap-8">
+                    @foreach ($properties as $property)
+                        <div class="bg-white border shadow-sm border-[#e0e0e0] rounded-4xl overflow-hidden">
+                            <div class="w-full aspect-[2/1] bg-[url(https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop)] bg-cover bg-center"></div>
+                            <div class="w-full p-[1.5rem]">
+                                <h3 class="font-semibold tracking-tight text-xl text-[#5f67b4] source-serif">{{ $property->property_name }}</h3>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <i class="fa-solid fa-location-dot fa-xs" style="color: #64748b;"></i>
+                                    <p class="text-xs text-muted-foreground text-[#64748b]">{{ $property->location }}</p>
+                                </div>
+                                <div class="w-full grid grid-cols-2 my-6">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-euro fa-xs" style="color: #020817;"></i>
+                                        <p class="text-sm text-muted-foreground font-medium text-[#020817]">{{ $property->price_per_night }}/night</p>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-person fa-xs" style="color: #020817;"></i>
+                                        <p class="text-sm text-muted-foreground font-medium text-[#020817]">Up to 8 guests</p>
+                                    </div>
+                                </div>
+                                <div class="w-full flex items-center justify-between mb-1">
+                                    <p class="text-xs text-muted-foreground text-[#64748b]">Bookings:</p>
+                                    <p class="text-xs text-muted-foreground font-medium text-[#020817]">12</p>
+                                </div>
+                                <div class="w-full flex items-center justify-between mb-6">
+                                    <p class="text-xs text-muted-foreground text-[#64748b]">Nextup:</p>
+                                    <p class="text-xs text-muted-foreground font-medium text-[#020817]">15 Feb 2025</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <a href="#" class="w-full rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Edit</a>
+                                    <a href="#" class="w-full rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Bookings</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
