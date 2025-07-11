@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\PropertyController;
 
 Route::get('/', function () { return view('welcome'); });
-
+Route::get('/property/{property}', [PropertyController::class, 'show'])->name('property.show');
 
 
 // AUTHENTICATIE

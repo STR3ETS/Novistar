@@ -12,6 +12,7 @@ class Property extends Model
         'property_name',
         'location',
         'description',
+        'max_guests',
         'amenities',
         'price_per_night',
         'cleaning_fee',
@@ -21,4 +22,14 @@ class Property extends Model
     protected $casts = [
         'amenities' => 'array',
     ];
+
+    public function photos()
+    {
+        return $this->hasMany(PropertyPhoto::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

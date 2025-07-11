@@ -34,10 +34,10 @@
     <div class="bg-white max-w-[675px] w-full border shadow-sm border-[#e0e0e0] rounded-4xl p-[1.5rem]">
         <div class="flex items-center justify-between">
             <h1 class="font-semibold tracking-tight text-2xl text-[#5f67b4] source-serif">Property Setup</h1>
-            <p id="step-counter" class="text-sm text-muted-foreground text-[#64748b]">Step 1 of 4</p>
+            <p id="step-counter" class="text-sm text-muted-foreground text-[#64748b]">Step 1 of 5</p>
         </div>
         <div class="w-full rounded-full h-[16px] bg-[#ada07b] overflow-hidden mt-4 mb-8">
-            <div id="progress-bar" class="h-full w-[25%] bg-[#5f67b4] transition duration-300"></div>
+            <div id="progress-bar" class="h-full w-[20%] bg-[#5f67b4] transition duration-300"></div>
         </div>
         <div id="title-step1" class="w-full flex flex-col gap-4 items-center justify-center mb-8">
             <i class="fa-solid fa-house" style="color: #5f67b4; font-size: 2.5em;"></i>
@@ -67,7 +67,14 @@
                 <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Set your rates and fees</p>
             </div>
         </div>
-        <form action="{{ route('dashboard.owner.properties.store') }}" method="POST">
+        <div id="title-step5" class="w-full flex hidden flex-col gap-4 items-center justify-center mb-8">
+            <i class="fa-solid fa-image" style="color: #5f67b4; font-size: 2.5em;"></i>
+            <div class="flex flex-col items-center">
+                <h2 class="font-semibold tracking-tight text-2xl text-[#5f67b4] source-serif">Property Images</h2>
+                <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Upload images of your property</p>
+            </div>
+        </div>
+        <form action="{{ route('dashboard.owner.properties.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div id="basic-information" class="flex flex-col gap-8">
                 <div class="flex flex-col gap-2">
@@ -81,17 +88,23 @@
             </div>
             <div id="property-details" class="flex hidden flex-col gap-8">
                 <div class="flex flex-col gap-6">
-                    <div class="flex flex-col gap-2">
-                        <p class="text-sm font-semibold leading-none text-[#020817]">Property Name</p>
-                        <input type="text" name="property-name" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="ex: Villa Sunrise" required>
+                    <div class="w-full grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-2">
+                            <p class="text-sm font-semibold leading-none text-[#020817]">Property Name</p>
+                            <input type="text" name="property-name" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="ex: Villa Sunrise" required>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <p class="text-sm font-semibold leading-none text-[#020817]">Location</p>
+                            <input type="text" name="location" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="ex: Ibiza, Spain" required>
                     </div>
-                    <div class="flex flex-col gap-2">
-                        <p class="text-sm font-semibold leading-none text-[#020817]">Location</p>
-                        <input type="text" name="location" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="ex: Ibiza, Spain" required>
                     </div>
                     <div class="flex flex-col gap-2">
                         <p class="text-sm font-semibold leading-none text-[#020817]">Description</p>
                         <textarea name="description" class="w-full min-h-[75px] max-h-[150px] text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="Describe your property, its unique features and what makes it special..." required></textarea>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm font-semibold leading-none text-[#020817]">Max Guests</p>
+                        <input type="number" min="1" name="max-guests" class="w-full text-sm px-3 py-2 border border-[#d1d1d1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5f67b4] transition duration-300 bg-[#f9f8f5]" placeholder="ex: 8" required>
                     </div>
                 </div>
                 <div class="w-full flex justify-between items-center">
@@ -149,7 +162,25 @@
                 </div>
                 <div class="w-full flex justify-between items-center">
                     <a id="back-btn-step4" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Back</a>
-                    <button type="submit" id="next-btn-step4" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Complete Setup</button>
+                    <a id="next-btn-step4" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Next</a>
+                    <!-- <button type="submit" id="next-btn-step4" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Complete Setup</button> -->
+                </div>
+            </div>
+            <div id="property-images" class="flex hidden flex-col gap-8">
+                <div 
+                    id="upload-area"
+                    class="border-2 border-dashed border-[#d1d1d1] rounded-xl p-6 text-center cursor-pointer bg-[#f9f8f5] hover:bg-[#f1f0ec] transition duration-300 flex items-center justify-center flex-col"
+                >
+                    <input type="file" id="fileInput" name="photos[]" multiple class="hidden">
+                    <p class="text-sm text-[#858482] font-medium">Click or drag files here to upload property photos</p>
+                </div>
+
+                <!-- Preview Grid -->
+                <div id="image-preview-grid" class="grid grid-cols-4 gap-4 hidden"></div>
+
+                <div class="w-full flex justify-between items-center">
+                    <a id="back-btn-step5" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Back</a>
+                    <button type="submit" id="next-btn-step5" class="cursor-pointer w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Complete Setup</button>
                 </div>
             </div>
         </form>
@@ -163,62 +194,129 @@
         nextBtnStep3 = document.getElementById('next-btn-step3');
         backBtnStep4 = document.getElementById('back-btn-step4');
         nextBtnStep4 = document.getElementById('next-btn-step4');
+        backBtnStep5 = document.getElementById('back-btn-step5');
 
         titleStep1 = document.getElementById('title-step1');
         titleStep2 = document.getElementById('title-step2');
         titleStep3 = document.getElementById('title-step3');
         titleStep4 = document.getElementById('title-step4');
+        titleStep5 = document.getElementById('title-step5');
 
         stepCounter = document.getElementById('step-counter');
 
         nextBtnStep1.addEventListener('click', function() {
-            stepCounter.textContent = 'Step 2 of 4';
+            stepCounter.textContent = 'Step 2 of 5';
             titleStep1.classList.add('hidden');
             titleStep2.classList.remove('hidden');
-            document.getElementById('progress-bar').style.width = '50%';
+            document.getElementById('progress-bar').style.width = '40%';
             document.getElementById('basic-information').classList.add('hidden');
             document.getElementById('property-details').classList.remove('hidden');
         });
         backBtnStep2.addEventListener('click', function() {
-            stepCounter.textContent = 'Step 1 of 4';
+            stepCounter.textContent = 'Step 1 of 5';
             titleStep2.classList.add('hidden');
             titleStep1.classList.remove('hidden');
-            document.getElementById('progress-bar').style.width = '25%';
+            document.getElementById('progress-bar').style.width = '20%';
             document.getElementById('property-details').classList.add('hidden');
             document.getElementById('basic-information').classList.remove('hidden');
         });
         nextBtnStep2.addEventListener('click', function() {
-            stepCounter.textContent = 'Step 3 of 4';
+            stepCounter.textContent = 'Step 3 of 5';
             titleStep2.classList.add('hidden');
             titleStep3.classList.remove('hidden');
-            document.getElementById('progress-bar').style.width = '75%';
+            document.getElementById('progress-bar').style.width = '60%';
             document.getElementById('property-details').classList.add('hidden');
             document.getElementById('amenities-and-features').classList.remove('hidden');
         });
         backBtnStep3.addEventListener('click', function() {
-            stepCounter.textContent = 'Step 2 of 4';
+            stepCounter.textContent = 'Step 2 of 5';
             titleStep3.classList.add('hidden');
             titleStep2.classList.remove('hidden');
-            document.getElementById('progress-bar').style.width = '50%';
+            document.getElementById('progress-bar').style.width = '40%';
             document.getElementById('amenities-and-features').classList.add('hidden');
             document.getElementById('property-details').classList.remove('hidden');
         });
         nextBtnStep3.addEventListener('click', function() {
-            stepCounter.textContent = 'Step 4 of 4';
+            stepCounter.textContent = 'Step 4 of 5';
             titleStep3.classList.add('hidden');
             titleStep4.classList.remove('hidden');
-            document.getElementById('progress-bar').style.width = '100%';
+            document.getElementById('progress-bar').style.width = '80%';
             document.getElementById('amenities-and-features').classList.add('hidden');
             document.getElementById('pricing-setup').classList.remove('hidden');
         });
         backBtnStep4.addEventListener('click', function() {
-            stepCounter.textContent = 'Step 3 of 4';
+            stepCounter.textContent = 'Step 3 of 5';
             titleStep4.classList.add('hidden');
             titleStep3.classList.remove('hidden');
-            document.getElementById('progress-bar').style.width = '75%';
+            document.getElementById('progress-bar').style.width = '60%';
             document.getElementById('pricing-setup').classList.add('hidden');
             document.getElementById('amenities-and-features').classList.remove('hidden');
         });
+        nextBtnStep4.addEventListener('click', function() {
+            stepCounter.textContent = 'Step 5 of 5';
+            titleStep4.classList.add('hidden');
+            titleStep5.classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '100%';
+            document.getElementById('pricing-setup').classList.add('hidden');
+            document.getElementById('property-images').classList.remove('hidden');
+        });
+        backBtnStep5.addEventListener('click', function() {
+            stepCounter.textContent = 'Step 4 of 5';
+            titleStep5.classList.add('hidden');
+            titleStep4.classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '80%';
+            document.getElementById('property-images').classList.add('hidden');
+            document.getElementById('pricing-setup').classList.remove('hidden');
+        });
+    </script>
+    <script>
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('fileInput');
+        const previewGrid = document.getElementById('image-preview-grid');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', () => {
+            displayPreviews(fileInput.files);
+        });
+
+        uploadArea.addEventListener('dragover', e => {
+            e.preventDefault();
+            uploadArea.classList.add('bg-[#f1f0ec]');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('bg-[#f1f0ec]');
+        });
+
+        uploadArea.addEventListener('drop', e => {
+            e.preventDefault();
+            uploadArea.classList.remove('bg-[#f1f0ec]');
+            const dt = new DataTransfer();
+            Array.from(e.dataTransfer.files).forEach(file => dt.items.add(file));
+            fileInput.files = dt.files;
+            displayPreviews(dt.files);
+        });
+
+        function displayPreviews(files) {
+            previewGrid.innerHTML = '';
+            if (files.length > 0) {
+                previewGrid.classList.remove('hidden');
+            }
+
+            Array.from(files).forEach(file => {
+                if (!file.type.startsWith('image/')) return;
+
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'w-full h-[150px] object-cover rounded-xl border border-[#d1d1d1]';
+                    previewGrid.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
     </script>
 </body>
 </html> 

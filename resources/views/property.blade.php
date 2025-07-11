@@ -6,6 +6,7 @@
     <title>Document</title>
 
     <script src="https://kit.fontawesome.com/4180a39c11.js" crossorigin="anonymous"></script>
+    
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
@@ -28,73 +29,142 @@
 
 </head>
 <body class="bg-[#f9f8f5]">
-    <div class="w-full h-screen flex">
-        <div class="w-[250px] h-full border-r border-r-[#e0e0e0] p-6 flex flex-col">
-            <div class="flex items-center gap-2 mb-8">
-                <a href="/" class="text-[#5f67b4] text-xl font-bold leading-none">Novistar</a>
-                <p class="text-[#020817] bg-[#ADA07B] text-xs font-semibold px-2 py-1 rounded-full">Owner</p>
-            </div>
-            <p class="pl-1.5 text-xs text-[#3f3f46b2] font-medium mb-2">Navigation</p>
-            <div class="flex flex-col gap-1">
-                @include('dashboard.owner.layouts.menu')
-            </div>
-        </div>
-        <div class="w-[calc(100%-250px)] h-full">
-            <div class="w-full p-3 border-b border-b-[#e0e0e0]">
-                <div class="w-8 h-8 rounded-full hover:bg-[#EBE8E0] opacity-80 hover:opacity-100 transition duration-300 cursor-pointer flex items-center justify-center">
-                    <svg class="max-w-[60%]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#020817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left" data-lov-id="src/components/ui/sidebar.tsx:279:6" data-lov-name="PanelLeft" data-component-path="src/components/ui/sidebar.tsx" data-component-line="279" data-component-file="sidebar.tsx" data-component-name="PanelLeft" data-component-content="%7B%7D"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg>
-                </div>
-            </div>
-            <div class="w-full max-w-[1400px] mx-auto h-[calc(100%-57px)] py-6 flex flex-col gap-8">
-                <div class="w-full flex items-center justify-between">
-                    <div>
-                        <h1 class="font-semibold tracking-tight text-3xl text-[#020817] source-serif">My Properties</h1>
-                        <p class="text-sm text-muted-foreground text-[#64748b] mt-1">Manage all your properties</p>
-                    </div>
-                    <a href="{{ route('dashboard.owner.property.create') }}" class="w-fit rounded-xl h-[38px] text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 px-4 flex items-center justify-center">Add Property</a>
-                </div>
-                <div class="grid grid-cols-3 gap-8">
-                    @foreach ($properties as $property)
-                        <div class="bg-white border shadow-sm border-[#e0e0e0] rounded-4xl overflow-hidden">
-                            @php
-                                $photo = $property->photos->first();
-                            @endphp
-
-                            <div class="w-full aspect-[2/1] bg-cover bg-center {{ $photo ? '' : 'bg-[#f1f1f1]' }}" style="background-image: url('{{ $photo ? asset('storage/' . $photo->path) : '' }}')"></div>
-                            <div class="w-full p-[1.5rem]">
-                                <h3 class="font-semibold tracking-tight text-xl text-[#5f67b4] source-serif">{{ $property->property_name }}</h3>
-                                <div class="flex items-center gap-2 mt-1">
-                                    <i class="fa-solid fa-location-dot fa-xs" style="color: #64748b;"></i>
-                                    <p class="text-xs text-muted-foreground text-[#64748b]">{{ $property->location }}</p>
-                                </div>
-                                <div class="w-full grid grid-cols-2 my-6 gap-4">
-                                    <div class="flex items-center gap-2">
-                                        <i class="fa-solid fa-euro fa-xs" style="color: #020817;"></i>
-                                        <p class="text-sm text-muted-foreground font-medium text-[#020817]">{{ $property->price_per_night }}/night</p>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <i class="fa-solid fa-person fa-xs" style="color: #020817;"></i>
-                                        <p class="text-sm text-muted-foreground font-medium text-[#020817]">Up to {{ $property->max_guests }} guests</p>
-                                    </div>
-                                </div>
-                                <div class="w-full flex items-center justify-between mb-1">
-                                    <p class="text-xs text-muted-foreground text-[#64748b]">Bookings:</p>
-                                    <p class="text-xs text-muted-foreground font-medium text-[#020817]">{{ $property->booking_count }}</p>
-                                </div>
-                                <div class="w-full flex items-center justify-between mb-6">
-                                    <p class="text-xs text-muted-foreground text-[#64748b]">Nextup:</p>
-                                    <p class="text-xs text-muted-foreground font-medium text-[#020817]">No upcoming booking</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <a href="#" class="w-full rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Edit</a>
-                                    <a href="#" class="w-full rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-[#f9f8f5] hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Bookings</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+    <div class="w-full h-[500px] bg-cover bg-center" style="background-image: url('{{ asset('storage/' . $property->photos->first()->path) }}')">
+        <div class="w-full h-full bg-black/30">
+            <div class="max-w-[1400px] h-full mx-auto flex flex-col justify-end pb-8">
+                <h1 class="font-semibold tracking-tight text-5xl text-white source-serif">{{ $property->property_name }}</h1>
+                <div class="flex items-center gap-2 mt-3 opacity-80">
+                    <i class="fa-solid fa-location-dot fa-lg" style="color: #fff;"></i>
+                    <p class="text-lg text-muted-foreground text-white">{{ $property->location }}</p>
                 </div>
             </div>
         </div>
     </div>
+    <div class="w-full">
+        <div class="max-w-[1400px] mx-auto py-[3rem] flex gap-30">
+            <div class="w-1/2 flex flex-col gap-8">
+                <div class="w-full bg-white shadow-sm border border-[#e0e0e0] rounded-4xl p-[1.5rem] flex flex-col">
+                    <h2 class="font-bold tracking-tight text-3xl text-[#5f67b4] text-center">€{{ $property->price_per_night }}<span class="font-normal opacity-50 text-sm">/night</span></h2>
+                    <div class="w-full px-4 py-3 rounded-4xl bg-[#f9f8f5] text-[#020817] text-sm font-medium flex items-center justify-between border border-[#e0e0e0] my-6">
+                        <span>Max Guests</span>
+                        <span class="font-normal">{{ $property->max_guests }}</span>
+                    </div>
+                    <a href="#" class="rounded-xl py-3 text-sm text-white font-semibold bg-[#5f67b4] hover:bg-[#3b4f6d] transition duration-300 text-center">Request to Book</a>
+                    <p class="text-sm text-muted-foreground text-[#020817] opacity-50 text-center mt-2">You won't be charged yet.</p>
+                </div>
+                <div>
+                    <p class="text-sm text-muted-foreground text-[#020817] opacity-70">Listed by {{ $property->user->name }}</p>
+                    <p class="text-xs text-muted-foreground text-[#020817] opacity-50">Joined Novistar on {{ $property->user->created_at->format('M Y') }}</p>
+                    <p class="text-sm text-muted-foreground text-[#020817] my-3  italic">"{{ $property->contact_information }}"</p>
+                    <a href="#" class="w-fit rounded-xl h-[38px] text-sm text-[#020817] font-semibold bg-white hover:bg-[#e2e1de] transition duration-300 px-4 flex items-center justify-center border border-[#e0e0e0]">Send a message</a>
+                </div>
+                <hr class="border-[#e0e0e0]">
+                <div>
+                    <h2 class="font-semibold tracking-tight text-2xl text-[#5772a5] source-serif mb-4">About this Property</h2>
+                    <p class="text-sm text-muted-foreground text-[#020817]">{{ $property->description }}</p>
+                </div>
+                <hr class="border-[#e0e0e0]">
+                <div>
+                    <h2 class="font-semibold tracking-tight text-2xl text-[#5772a5] source-serif mb-4">Amenities</h2>
+                    @php
+                        $allAmenities = [
+                            'Wifi', 'Parking', 'Garden', 'Pet Friendly', 'Laundry',
+                            'Pool', 'Air Conditioning', 'Fireplace', 'Gym', 'TV',
+                            'Kitchen', 'Beach Access', 'Balcony', 'Hot Tub', 'Workspace'
+                        ];
+                    @endphp
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-4">
+                        @foreach ($allAmenities as $amenity)
+                            <div class="text-sm font-medium px-4 py-2 rounded-xl border
+                                {{ in_array($amenity, $property->amenities ?? []) ? 'bg-[#5772a5] text-white border-transparent' : 'bg-white text-[#020817] border-[#e0e0e0]' }}">
+                                {{ $amenity }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <hr class="border-[#e0e0e0]">
+                <div>
+                    <h2 class="font-semibold tracking-tight text-2xl text-[#5772a5] source-serif mb-4">Fees</h2>
+                    <div class="w-full grid grid-cols-2 gap-2">
+                        <div class="text-sm font-medium text-[#020817] bg-white rounded-xl px-4 py-3 border border-[#e0e0e0] flex items-center justify-between">
+                            <span>Cleaning :</span>
+                            <span>€{{ $property->cleaning_fee }}</span>
+                        </div>
+                        <div class="text-sm font-medium text-[#020817] bg-white rounded-xl px-4 py-3 border border-[#e0e0e0] flex items-center justify-between">
+                            <span>Security Deposit :</span>
+                            <span>€{{ $property->security_deposit }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2 flex flex-col gap-4" id="property-media">
+                <div class="w-full">
+                    <div class="w-full aspect-[2/1] rounded-4xl" style="background-image: url('{{ asset('storage/' . $property->photos->first()->path) }}'); background-size: cover; background-position: center;"></div>
+                </div>
+                <div class="w-full flex flex-col gap-4">
+                    <div class="w-full flex gap-4">
+                        <div class="w-1/2">
+                            <div class="w-full aspect-[2/1] rounded-4xl" style="background-image: url('{{ asset('storage/' . $property->photos->first()->path) }}'); background-size: cover; background-position: center;"></div>
+                        </div>
+                        <div class="w-1/2">
+                            <div class="w-full aspect-[2/1] rounded-4xl" style="background-image: url('{{ asset('storage/' . $property->photos->first()->path) }}'); background-size: cover; background-position: center;"></div>
+                        </div>
+                    </div>
+                    <div class="w-full flex gap-4">
+                        <div class="w-1/2">
+                            <div class="w-full aspect-[2/1] rounded-4xl" style="background-image: url('{{ asset('storage/' . $property->photos->first()->path) }}'); background-size: cover; background-position: center;"></div>
+                        </div>
+                        <div class="w-1/2">
+                            <div class="w-full aspect-[2/1] rounded-4xl overflow-hidden" style="background-image: url('{{ asset('storage/' . $property->photos->first()->path) }}'); background-size: cover; background-position: center;">
+                                <div class="w-full h-full bg-black/50 flex items-center justify-center text-white text-xl font-semibold">
+                                    +10 photos
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="border-[#e0e0e0] mt-8 mb-4">
+                <div>
+                    <div class="w-full flex items-center justify-between mb-4">
+                        <h2 class="font-semibold tracking-tight text-2xl text-[#5772a5] source-serif">Where you will stay</h2>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot fa-xs" style="color: #64748b;"></i>
+                            <p class="text-xs text-muted-foreground text-[#64748b]">{{ $property->location }}</p>
+                        </div>
+                    </div>
+                    <div class="w-full h-[255px] rounded-4xl overflow-hidden border border-[#e0e0e0]">
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            loading="lazy"
+                            allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBW_Q6hLn3OU1TAROZpLC8BlE3wVOBhO-k&q={{ urlencode($property->location) }}">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="container mx-auto py-12">
+        <h1 class="text-3xl font-bold mb-4">{{ $property->property_name }}</h1>
+        <p class="text-gray-600 mb-2"><i class="fa-solid fa-location-dot"></i> {{ $property->location }}</p>
+        <p class="mb-6">{{ $property->description }}</p>
+
+        <div class="grid grid-cols-3 gap-4 mb-8">
+            @foreach ($property->photos as $photo)
+                <img src="{{ asset('storage/' . $photo->path) }}" class="rounded-xl w-full h-48 object-cover" />
+            @endforeach
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+            <p><strong>Prijs per nacht:</strong> €{{ $property->price_per_night }}</p>
+            <p><strong>Schoonmaakkosten:</strong> €{{ $property->cleaning_fee }}</p>
+            <p><strong>Borg:</strong> €{{ $property->security_deposit }}</p>
+            <p><strong>Max gasten:</strong> {{ $property->max_guests }}</p>
+        </div>
+    </div> -->
 </body>
-</html> 
+</html>
